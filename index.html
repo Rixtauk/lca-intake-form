@@ -84,7 +84,8 @@
           bomProcess: '',
           skuProcess: '',
           sapSystem: '',
-          trainingFunctions: ''
+          trainingFunctions: '',
+          additionalComments: ''
         });
 
         const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
@@ -123,8 +124,11 @@
               '6b': formData.bomProcess,
               '6c': formData.skuProcess,
               '7': formData.sapSystem,
-              '9': formData.trainingFunctions
+              '9': formData.trainingFunctions,
+              '10': formData.additionalComments
             };
+
+            console.log('Submitting payload', payload);
 
             const response = await fetch('https://hook.eu2.make.com/ns86en2yoic2stutc3n71l6weyf66w2s', {
               method: 'POST',
@@ -145,7 +149,8 @@
                 bomProcess: '',
                 skuProcess: '',
                 sapSystem: '',
-                trainingFunctions: ''
+                trainingFunctions: '',
+                additionalComments: ''
               });
               setSubmitStatus({
                 type: 'success',
@@ -236,7 +241,7 @@
                 <div className="px-8 py-12 text-center gradient-header">
                   <div className="mx-auto mb-6 bg-white rounded-lg p-6 inline-block">
                     <img
-                      src="https://www.dropbox.com/scl/fi/b18q7sq7ei3z15luwple1/loogo.png?rlkey=ezqoudknshsl71pgpk07trso5&st=1p1mau1l&dl=1"
+                      src="https://dl.dropboxusercontent.com/scl/fi/b18q7sq7ei3z15luwple1/loogo.png?rlkey=ezqoudknshsl71pgpk07trso5&st=1p1mau1l&raw=1"
                       alt="LCA-CALC - Smart Eco-Lighting Metrics"
                       className="h-20 w-auto object-contain mx-auto"
                       onError={(event) => {
@@ -245,7 +250,7 @@
                       }}
                     />
                   </div>
-                  <p className="text-xl text-white opacity-90">Solutions tailored to your needs</p>
+                  <p className="text-xl text-white opacity-90">Solution tailored to your needs</p>
                 </div>
 
                 <div className="px-8 pt-6">
@@ -379,7 +384,7 @@
                             Where is the information for the BOM for the luminaires stored?
                           </label>
                           <p className="text-sm text-gray-600 mb-2">
-                            Is the information stored (ie: API system, SAP, other software, flat files)?
+                            Please let us know if the information is stored in an API system, SAP, other software, or flat files—for example, your API or flat-file repositories.
                           </p>
                           <textarea
                             id="bomStorage"
@@ -472,7 +477,7 @@
                           Question 9 – Training:
                         </label>
                         <p className="text-base text-gray-700 mb-2">
-                          I have planned for one engineer training, and for the sales team. Are there more functions that would benefit from a training session?
+                          I have planned training sessions for your R&amp;D team and for the sales team. Are there more functions that would benefit from a training session?
                         </p>
                         <textarea
                           id="trainingFunctions"
@@ -482,6 +487,24 @@
                           rows="8"
                           className={inputClass}
                           placeholder="List any additional functions or departments that would benefit from training sessions..."
+                        />
+                      </div>
+
+                      <div className="space-y-3">
+                        <label htmlFor="additionalComments" className="block text-lg font-semibold text-gray-900">
+                          Question 10 – Additional comments:
+                        </label>
+                        <p className="text-base text-gray-700 mb-2">
+                          Any other comments or questions we can help you with?
+                        </p>
+                        <textarea
+                          id="additionalComments"
+                          name="additionalComments"
+                          value={formData.additionalComments}
+                          onChange={handleChange}
+                          rows="6"
+                          className={inputClass}
+                          placeholder="Let us know how else we can support you..."
                         />
                       </div>
                     </div>
